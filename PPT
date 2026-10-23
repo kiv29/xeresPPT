@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027 流年運勢自己看</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=Instrument+Sans:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&family=Instrument+Serif&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     簡報工廠 · 簡報範本 v2
+     六套皮膚內建，改最下面 DECK.skin 就切換（播放時按 S 也能輪流看）：
+       "greige"   灰調機構：暖灰米底、寬體無襯線、半色調點陣、髮絲線、炭灰深頁
+       "midnight" 午夜霧光：奶油底、霧化深色漸層、人文無襯線、逐字浮現
+       "aurora"   極光：靛紫光暈、白色圓角區塊、玻璃感
+       "pastel"   粉彩研究：暖奶油、漸層字、四色粉彩卡、波形線
+       "bloom"    柔光：奶油底、襯線標題、彩色霧暈
+       "sky"      天光：天空藍漸層、封面照片位、玻璃導覽
+     其餘：只動 DECK 內容清單。引擎不碰。
+     ═══════════════════════════════════════════════════════════════ -->
+<style>
+/* ────────── 皮膚 A：灰調機構 ────────── */
+.skin-greige{
+  --bg:#EDEAE5;--bg2:#E4E0DA;--card:#F3F1ED;
+  --ink:#1E1916;--ink2:#332D2D;--mute:#7C756F;--sand:#CBC4BC;
+  --dark:#332D2D;--dark2:#1E1916;--onDark:#EDEAE5;--onDarkMute:#A79F96;
+  --accent:#585540;
+  --line:rgba(30,25,22,.14);--lineDark:rgba(237,234,229,.16);
+  --display:'Archivo','Noto Sans TC',sans-serif;--body:'Archivo','Noto Sans TC',sans-serif;--tc:'Noto Sans TC',sans-serif;
+  --dw:125;--dwt:600;--radius:14px;--pill:999px;
+}
+/* ────────── 皮膚 B：午夜霧光 ────────── */
+.skin-midnight{
+  --bg:#F3F0E9;--bg2:#ECE8E0;--card:#FAF8F3;
+  --ink:#1B1E20;--ink2:#352E32;--mute:#7C726C;--sand:#C9C8C5;
+  --dark:#1B1F2E;--dark2:#12141C;--onDark:#F3F0E9;--onDarkMute:#B9B3AD;
+  --accent:#5D4F54;
+  --line:rgba(27,30,32,.12);--lineDark:rgba(243,240,233,.14);
+  --display:'Instrument Sans','Noto Sans TC',sans-serif;--body:'Instrument Sans','Noto Sans TC',sans-serif;--tc:'Noto Sans TC',sans-serif;
+  --dw:100;--dwt:600;--radius:20px;--pill:999px;
+}
+
+/* ────────── 皮膚 C：極光（onefin）：靛紫光暈、玻璃面板、白色圓角區塊 ────────── */
+.skin-aurora{
+  --bg:#F6F5FF;--bg2:#FFFFFF;--card:#FFFFFF;
+  --ink:#12103A;--ink2:#2E2B5E;--mute:#6F6C9A;--sand:#C7C2FF;
+  --dark:#2A1EBF;--dark2:#150F6B;--onDark:#FFFFFF;--onDarkMute:#D9D5FF;
+  --accent:#4B3BFF;
+  --line:rgba(18,16,58,.1);--lineDark:rgba(255,255,255,.22);
+  --display:'Instrument Sans','Noto Sans TC',sans-serif;--body:'Instrument Sans','Noto Sans TC',sans-serif;--tc:'Noto Sans TC',sans-serif;
+  --dw:100;--dwt:600;--radius:28px;--pill:999px;
+}
+/* ────────── 皮膚 D：粉彩研究（hume）：暖奶油、漸層字、四色粉彩卡、波形線 ────────── */
+.skin-pastel{
+  --bg:#FBF7F2;--bg2:#F6F1EA;--card:#FFFFFF;
+  --ink:#1C1B1F;--ink2:#3A3840;--mute:#7A7780;--sand:#E7D9F2;
+  --dark:#151419;--dark2:#0B0A0D;--onDark:#FBF7F2;--onDarkMute:#B8B3C2;
+  --accent:#E59BD6;
+  --line:rgba(28,27,31,.1);--lineDark:rgba(251,247,242,.16);
+  --display:'Instrument Sans','Noto Sans TC',sans-serif;--body:'Instrument Sans','Noto Sans TC',sans-serif;--tc:'Noto Sans TC',sans-serif;
+  --dw:100;--dwt:500;--radius:22px;--pill:999px;
+}
+/* ────────── 皮膚 E：柔光（liftoff）：奶油底、編輯體襯線標題、彩色霧光暈 ────────── */
+.skin-bloom{
+  --bg:#FBF8F3;--bg2:#F5F1EA;--card:#FFFFFF;
+  --ink:#171A24;--ink2:#343849;--mute:#767A8A;--sand:#F3C9B5;
+  --dark:#171A24;--dark2:#0E1018;--onDark:#FBF8F3;--onDarkMute:#B7BAC7;
+  --accent:#F27A2C;
+  --line:rgba(23,26,36,.1);--lineDark:rgba(251,248,243,.16);
+  --display:'Instrument Serif','Noto Serif TC',serif;--body:'Instrument Sans','Noto Sans TC',sans-serif;--tc:'Noto Serif TC',serif;
+  --dw:100;--dwt:400;--radius:24px;--pill:999px;
+}
+/* ────────── 皮膚 F：天光（alveos）：天空藍漸層、全幅照片位、玻璃導覽 ────────── */
+.skin-sky{
+  --bg:#DCE7F5;--bg2:#E9F0F8;--card:rgba(255,255,255,.55);
+  --ink:#10233A;--ink2:#2B3F58;--mute:#5F7390;--sand:#B9CCE3;
+  --dark:#3F6EA6;--dark2:#1E3A5F;--onDark:#FFFFFF;--onDarkMute:#D6E3F2;
+  --accent:#10233A;
+  --line:rgba(16,35,58,.12);--lineDark:rgba(255,255,255,.28);
+  --display:'Instrument Sans','Noto Sans TC',sans-serif;--body:'Instrument Sans','Noto Sans TC',sans-serif;--tc:'Noto Sans TC',sans-serif;
+  --dw:100;--dwt:500;--radius:26px;--pill:999px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#0f0f0e;overflow:hidden}
+body{font-family:var(--body);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--sand);color:var(--ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+#wrap{position:fixed;inset:0;overflow:hidden}
+#stage{position:absolute;top:50%;left:50%;width:1920px;height:1080px;transform-origin:center;box-shadow:0 60px 140px rgba(0,0,0,.6);background:var(--bg)}
+.slide{position:absolute;inset:0;padding:96px 120px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .4s ease;background:var(--bg);overflow:hidden}
+.slide.on{opacity:1;visibility:visible;z-index:2}
+.slide.alt{background:var(--bg2)}
+.slide.dark{background:var(--dark);color:var(--onDark)}
+
+/* 頂欄與底欄：髮絲線＋小字 */
+.head{position:absolute;left:120px;right:120px;top:52px;display:flex;justify-content:space-between;align-items:center;font-family:var(--body);font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);padding-bottom:18px;border-bottom:1px solid var(--line)}
+.slide.dark .head{color:var(--onDarkMute);border-color:var(--lineDark)}
+.head .brand{font-weight:500}
+.foot{position:absolute;left:120px;right:120px;bottom:52px;display:flex;justify-content:space-between;align-items:flex-end;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.slide.dark .foot{color:var(--onDarkMute)}
+#bar{position:absolute;left:0;bottom:0;height:3px;background:var(--ink);width:0;transition:width .4s;z-index:9}
+
+/* 進場 */
+.slide.on .a{animation:rise .9s cubic-bezier(.16,1,.3,1) both}
+.slide.on .a:nth-child(2){animation-delay:.1s}.slide.on .a:nth-child(3){animation-delay:.2s}.slide.on .a:nth-child(4){animation-delay:.3s}.slide.on .a:nth-child(5){animation-delay:.4s}.slide.on .a:nth-child(6){animation-delay:.5s}.slide.on .a:nth-child(7){animation-delay:.6s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+/* 午夜：逐字浮現 */
+.w{display:inline-block;opacity:.18;transition:opacity .5s ease}
+.slide.on .w{opacity:1}
+
+/* 字 */
+.label{font-family:var(--body);font-size:16px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:500;margin-bottom:30px;display:flex;align-items:center;gap:14px}
+.label::before{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+.slide.dark .label{color:var(--onDarkMute)}
+.h1{font-family:var(--display);font-variation-settings:"wdth" var(--dw),"wght" var(--dwt);font-weight:var(--dwt);font-size:116px;line-height:1.02;letter-spacing:-.025em;max-width:1460px}
+.h1 .tc,.h2 .tc,.quote .tc{font-family:var(--tc);font-weight:700;letter-spacing:0;line-height:1.12}
+.h1 em,.h2 em{font-style:normal;color:var(--mute)}
+.slide.dark .h1 em,.slide.dark .h2 em{color:var(--onDarkMute)}
+.h2{font-family:var(--display);font-variation-settings:"wdth" var(--dw),"wght" var(--dwt);font-weight:var(--dwt);font-size:84px;line-height:1.04;letter-spacing:-.02em;max-width:1400px}
+.lead{margin-top:34px;font-size:28px;line-height:1.55;color:var(--ink2);max-width:880px;font-weight:400}
+.slide.dark .lead{color:var(--onDarkMute)}
+.center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:end}
+.two .desc{font-size:22px;line-height:1.6;color:var(--mute);max-width:520px;padding-bottom:10px}
+.slide.dark .two .desc{color:var(--onDarkMute)}
+
+/* 列點：編號＋髮絲線 */
+.points{list-style:none;margin-top:52px;max-width:1300px;border-top:1px solid var(--line)}
+.slide.dark .points{border-color:var(--lineDark)}
+.points li{display:grid;grid-template-columns:90px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.slide.dark .points li{border-color:var(--lineDark)}
+.points li .n{font-size:16px;letter-spacing:.08em;color:var(--mute);font-weight:500}
+.slide.dark .points li .n{color:var(--onDarkMute)}
+.points li .t{font-family:var(--tc);font-size:34px;font-weight:700;line-height:1.3}
+.points li .t small{display:block;font-family:var(--body);font-size:20px;font-weight:400;color:var(--mute);margin-top:6px;letter-spacing:0}
+.slide.dark .points li .t small{color:var(--onDarkMute)}
+
+/* 大數字 */
+.stat{font-family:var(--display);font-variation-settings:"wdth" var(--dw),"wght" 600;font-weight:600;font-size:360px;line-height:.9;letter-spacing:-.05em}
+.stat-label{font-size:30px;line-height:1.5;color:var(--ink2);margin-top:30px;max-width:900px}
+.slide.dark .stat-label{color:var(--onDarkMute)}
+
+/* 金句 */
+.quote{font-family:var(--display);font-variation-settings:"wdth" var(--dw),"wght" 500;font-weight:500;font-size:78px;line-height:1.16;letter-spacing:-.02em;max-width:1500px}
+.quote .tc{font-weight:500}
+.attr{margin-top:44px;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--onDarkMute);display:flex;align-items:center;gap:14px}
+.attr::before{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+
+/* 卡片 */
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:36px 34px 34px;min-height:400px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.slide.dark .col{background:rgba(255,255,255,.05);border-color:var(--lineDark)}
+.col .n{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:500;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.col .t{font-family:var(--tc);font-weight:700;font-size:40px;line-height:1.2;margin-bottom:16px}
+.col .d{font-size:21px;line-height:1.6;color:var(--ink2)}
+.col ul{list-style:none;margin-top:auto;padding-top:20px}
+.col ul li{font-size:20px;line-height:1.75;color:var(--ink2);padding-left:22px;position:relative}
+.col ul li::before{content:"";position:absolute;left:0;top:.8em;width:10px;height:1px;background:var(--mute)}
+
+/* 步驟 */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
+.step{border-top:1px solid var(--ink);padding-top:22px;min-height:300px;position:relative}
+.slide.dark .step{border-color:var(--onDark)}
+.step .num{font-family:var(--display);font-variation-settings:"wdth" var(--dw),"wght" 600;font-weight:600;font-size:22px;letter-spacing:.02em;color:var(--mute)}
+.step .t{font-family:var(--tc);font-weight:700;font-size:36px;line-height:1.2;margin-top:70px}
+.step .d{font-size:20px;line-height:1.6;color:var(--mute);margin-top:12px}
+.step .dots{position:absolute;right:0;top:22px;width:64px;height:64px;opacity:.85}
+
+/* 對比 */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:56px}
+.vs .box{border-radius:var(--radius);padding:52px 48px;min-height:420px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);background:var(--card)}
+.vs .box.r{background:var(--dark);color:var(--onDark);border-color:transparent;position:relative;overflow:hidden}
+.vs .k{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.vs .box.r .k{color:var(--onDarkMute)}
+.vs .big{font-family:var(--display);font-variation-settings:"wdth" var(--dw),"wght" 600;font-weight:600;font-size:200px;line-height:.9;letter-spacing:-.05em;margin:30px 0 20px}
+.vs .box.l .big{color:var(--sand)}
+.vs .lab{font-size:24px;line-height:1.5;max-width:520px}
+.vs .box.l .lab{color:var(--mute)}
+
+/* 圖片 */
+.figure{margin-top:48px;border-radius:var(--radius);overflow:hidden;background:var(--bg2);border:1px solid var(--line);max-height:620px;display:flex;align-items:center;justify-content:center;position:relative}
+.figure img{max-width:100%;max-height:620px;display:block}
+.figure .ph{padding:110px;font-size:16px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center}
+
+/* 行動頁 */
+.cta-btn{display:inline-flex;align-items:center;gap:16px;margin-top:52px;background:var(--onDark);color:var(--dark2);font-family:var(--body);font-weight:500;font-size:24px;padding:22px 40px;border-radius:var(--pill);text-decoration:none;transition:transform .35s cubic-bezier(.16,1,.3,1),background .3s}
+.cta-btn::after{content:"→";font-size:22px}
+.cta-btn:hover{transform:translateX(4px)}
+.slide:not(.dark) .cta-btn{background:var(--ink);color:var(--bg)}
+.cta-note{margin-top:22px;font-size:16px;letter-spacing:.08em;text-transform:uppercase;color:var(--onDarkMute)}
+.slide:not(.dark) .cta-note{color:var(--mute)}
+
+
+/* ────────── 動態圖解（motion graphic 輔助說明） ────────── */
+.diagram{margin-top:52px;width:100%;height:520px;position:relative}
+.diagram svg{width:100%;height:100%;overflow:visible}
+.diagram .node{transform-origin:center;transform-box:fill-box;opacity:0}
+.diagram .lk{stroke-dasharray:600;stroke-dashoffset:600;fill:none}
+.diagram .lbl{opacity:0}
+.slide.on .diagram .node{animation:dgPop .7s cubic-bezier(.34,1.56,.64,1) both}
+.slide.on .diagram .lk{animation:dgDraw 1s cubic-bezier(.16,1,.3,1) both}
+.slide.on .diagram .lbl{animation:rise .7s cubic-bezier(.16,1,.3,1) both}
+.slide.on .diagram .orb{animation:dgOrbit 18s linear infinite;transform-origin:center;transform-box:fill-box}
+.slide.on .diagram .pulse{animation:dgPulse 2.6s ease-in-out infinite}
+@keyframes dgPop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes dgDraw{to{stroke-dashoffset:0}}
+@keyframes dgOrbit{to{transform:rotate(360deg)}}
+@keyframes dgPulse{0%,100%{opacity:.35}50%{opacity:1}}
+.diagram text{font-family:var(--tc);fill:currentColor}
+.diagram .t1{font-size:30px;font-weight:700}
+.diagram .t2{font-size:19px;opacity:.7}
+.diagram .num{font-family:var(--display);font-variation-settings:"wdth" var(--dw),"wght" 600;font-size:26px;font-weight:600}
+.diagram .bar{opacity:0;transform-origin:left center;transform-box:fill-box}
+.slide.on .diagram .bar{animation:dgGrow 1.1s cubic-bezier(.16,1,.3,1) both}
+@keyframes dgGrow{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:scaleX(1)}}
+/* ────────── 圖像模組 ────────── */
+/* 半色調點球（灰調） */
+.halftone{position:absolute;right:120px;top:50%;transform:translateY(-50%);width:640px;height:640px;pointer-events:none}
+.halftone circle{fill:currentColor;transform-origin:center;transform-box:fill-box}
+.slide.on .halftone circle{animation:pulse 3.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(.72)}}
+/* 抖動直線條（灰調） */
+.dither{position:absolute;left:120px;right:120px;bottom:150px;height:220px;pointer-events:none;background:repeating-linear-gradient(90deg,currentColor 0 3px,transparent 3px 9px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 35%,#000 65%,transparent);mask-image:linear-gradient(90deg,transparent,#000 35%,#000 65%,transparent);opacity:.35}
+.slide.on .dither{animation:ditherIn 1.4s cubic-bezier(.16,1,.3,1) both}
+@keyframes ditherIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* 霧光（午夜） */
+.bokeh{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bokeh i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.85;will-change:transform}
+.bokeh i:nth-child(1){width:900px;height:900px;left:-200px;top:-300px;background:#5D4F54}
+.bokeh i:nth-child(2){width:760px;height:760px;right:-160px;top:-200px;background:#282A3B}
+.bokeh i:nth-child(3){width:700px;height:700px;left:38%;bottom:-360px;background:#817264}
+.bokeh i:nth-child(4){width:520px;height:520px;right:22%;bottom:-120px;background:#352E32}
+.slide.on .bokeh i{animation:drift 14s ease-in-out infinite alternate}
+.slide.on .bokeh i:nth-child(2){animation-duration:17s}.slide.on .bokeh i:nth-child(3){animation-duration:20s}.slide.on .bokeh i:nth-child(4){animation-duration:12s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,-50px) scale(1.12)}}
+.grainlayer{position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/></svg>");mix-blend-mode:overlay}
+/* 極光（aurora）：靛紫光暈＋玻璃；中文標題配超明體感的粗宋 */
+.skin-aurora .h1 .tc,.skin-aurora .h2 .tc,.skin-aurora .quote .tc{font-family:'Noto Serif TC',serif;font-weight:900;font-variation-settings:normal;letter-spacing:.01em}
+.skin-aurora .col .t,.skin-aurora .points li .t,.skin-aurora .step .t{font-family:'Noto Serif TC',serif;font-weight:900}
+/* 極光（aurora）：靛紫光暈＋玻璃 */
+.glow{position:absolute;inset:0;pointer-events:none;overflow:hidden;background:radial-gradient(900px 620px at 70% 20%,#8A6BFF 0%,rgba(138,107,255,0) 60%),radial-gradient(800px 700px at 25% 85%,#3B2BE0 0%,rgba(59,43,224,0) 62%),radial-gradient(600px 500px at 85% 80%,#FF7AD9 0%,rgba(255,122,217,0) 60%),linear-gradient(180deg,#2A1EBF,#150F6B)}
+.slide.on .glow{animation:glowdrift 12s ease-in-out infinite alternate}
+@keyframes glowdrift{from{background-position:0 0,0 0,0 0,0 0}to{background-position:60px -40px,-40px 40px,30px 30px,0 0}}
+.skin-aurora .slide.dark{background:transparent}
+.skin-aurora .col,.skin-aurora .vs .box.l,.skin-aurora .figure{box-shadow:0 30px 70px -40px rgba(42,30,191,.35)}
+.skin-aurora .cta-btn{background:linear-gradient(180deg,#5B4BFF,#3A2AE8)!important;color:#fff!important;box-shadow:0 14px 34px -14px rgba(59,43,224,.7)}
+/* 粉彩（pastel）：漸層字、波形線、四色卡 */
+.skin-pastel .h1 em,.skin-pastel .h2 em{background:linear-gradient(90deg,#C9A4F2,#F2A7D1,#F5B98B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.waves{position:absolute;left:120px;right:120px;bottom:130px;height:260px;pointer-events:none;opacity:.9}
+.waves path{fill:none;stroke-width:1.2;stroke-dasharray:2600;stroke-dashoffset:2600}
+.slide.on .waves path{animation:draw 2.6s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.skin-pastel .cols .col:nth-child(1){background:#F0E4F7;border-color:transparent}.skin-pastel .cols .col:nth-child(2){background:#FDE8D6;border-color:transparent}.skin-pastel .cols .col:nth-child(3){background:#E2F3EA;border-color:transparent}.skin-pastel .cols .col:nth-child(4){background:#DFEAF6;border-color:transparent}
+.skin-pastel .label,.skin-pastel .col .n,.skin-pastel .points li .n,.skin-pastel .vs .k{font-family:'JetBrains Mono',monospace;letter-spacing:.12em}
+/* 柔光（bloom）：彩色霧暈在淺底 */
+.bloom{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.bloom i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.75}
+.bloom i:nth-child(1){width:760px;height:520px;left:-120px;top:32%;background:#F5A623}
+.bloom i:nth-child(2){width:700px;height:560px;left:32%;top:38%;background:#FF6B9A}
+.bloom i:nth-child(3){width:720px;height:560px;right:-140px;top:30%;background:#7FB2FF}
+.bloom i:nth-child(4){width:520px;height:420px;left:48%;top:20%;background:#B98BFF}
+.slide.on .bloom i{animation:drift 16s ease-in-out infinite alternate}
+.skin-bloom .slide.dark{background:var(--bg);color:var(--ink)}
+.skin-bloom .slide.dark .head,.skin-bloom .slide.dark .foot,.skin-bloom .slide.dark .label,.skin-bloom .slide.dark .lead,.skin-bloom .slide.dark .attr,.skin-bloom .slide.dark .cta-note{color:var(--mute);border-color:var(--line)}
+.skin-bloom .slide.dark .cta-btn{background:var(--ink);color:var(--bg)}
+.skin-bloom .h1,.skin-bloom .h2,.skin-bloom .quote{letter-spacing:-.01em;font-weight:400}
+.skin-bloom .h1 .tc,.skin-bloom .h2 .tc,.skin-bloom .quote .tc{font-weight:600}
+/* 天光（sky）：藍天漸層＋照片位＋玻璃 */
+.skin-sky .slide{background:linear-gradient(180deg,#CFE0F4 0%,#DCE7F5 55%,#EEF3F9 100%)}
+.skin-sky .slide.dark{background:linear-gradient(180deg,#5C8CC4 0%,#3F6EA6 60%,#2E5686 100%)}
+.skin-sky .photo{position:absolute;right:0;top:0;bottom:0;width:46%;background:linear-gradient(160deg,#A9C6E8,#6F9BD0 60%,#456E9E);overflow:hidden}
+.skin-sky .photo::after{content:"照片放這裡 · 叫 Claude「封面放這張圖」";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);white-space:nowrap}
+.skin-sky .photo img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.skin-sky .photo~.center{max-width:50%}
+.skin-sky .col,.skin-sky .vs .box.l,.skin-sky .figure{backdrop-filter:blur(14px);background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.7)}
+.skin-sky .head{background:rgba(255,255,255,.45);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:14px 26px;top:40px}
+.skin-sky .slide.dark .head{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3)}
+
+/* 粉彩：深色頁也走淺底（參考站幾乎全淺），波形線放右側 */
+.skin-pastel .slide.dark{background:var(--bg);color:var(--ink)}
+.skin-pastel .slide.dark .head,.skin-pastel .slide.dark .foot,.skin-pastel .slide.dark .label,.skin-pastel .slide.dark .lead,.skin-pastel .slide.dark .attr,.skin-pastel .slide.dark .cta-note{color:var(--mute);border-color:var(--line)}
+.skin-pastel .slide.dark .cta-btn{background:var(--ink);color:var(--bg)}
+.skin-pastel .slide.dark .h1 em,.skin-pastel .slide.dark .h2 em{color:transparent}
+.skin-pastel .slide[data-i] .waves{left:52%;right:120px;top:50%;bottom:auto;height:300px;transform:translateY(-50%)}
+.skin-pastel .stat-label{max-width:820px}
+/* 柔光：霧暈往下放，標題區乾淨；英文副標用墨色壓淡 */
+.skin-bloom .bloom i{top:auto;bottom:-260px}
+.skin-bloom .bloom i:nth-child(1){left:-160px}.skin-bloom .bloom i:nth-child(2){left:26%}.skin-bloom .bloom i:nth-child(3){right:-120px}.skin-bloom .bloom i:nth-child(4){left:52%;bottom:-160px}
+.skin-bloom .h1 em,.skin-bloom .h2 em{color:var(--ink);opacity:.4}
+/* 天光：封面標題縮一級，避免斷行 */
+.skin-sky .slide.dark .h1{font-size:96px}
+/* 皮膚差異：各自只顯示自己的圖像模組 */
+.skin-greige .bokeh,.skin-greige .grainlayer,.skin-greige .glow,.skin-greige .waves,.skin-greige .bloom,.skin-greige .photo{display:none}
+.skin-midnight .halftone,.skin-midnight .dither,.skin-midnight .glow,.skin-midnight .waves,.skin-midnight .bloom,.skin-midnight .photo{display:none}
+.skin-midnight .cols .col{box-shadow:0 20px 50px -40px rgba(27,30,32,.35)}
+.skin-aurora .halftone,.skin-aurora .dither,.skin-aurora .bokeh,.skin-aurora .grainlayer,.skin-aurora .waves,.skin-aurora .bloom,.skin-aurora .photo{display:none}
+.skin-pastel .halftone,.skin-pastel .dither,.skin-pastel .bokeh,.skin-pastel .grainlayer,.skin-pastel .glow,.skin-pastel .bloom,.skin-pastel .photo{display:none}
+.skin-bloom .halftone,.skin-bloom .dither,.skin-bloom .bokeh,.skin-bloom .grainlayer,.skin-bloom .glow,.skin-bloom .waves,.skin-bloom .photo{display:none}
+.skin-sky .halftone,.skin-sky .dither,.skin-sky .bokeh,.skin-sky .grainlayer,.skin-sky .glow,.skin-sky .waves,.skin-sky .bloom{display:none}
+/* 自訂皮膚（不是內建六套）：預設只顯示 bokeh 霧暈層，其他圖像層關掉；要用別層在 .skin-你的名字 裡自己 display:block */
+body:not(.skin-greige):not(.skin-midnight):not(.skin-aurora):not(.skin-pastel):not(.skin-bloom):not(.skin-sky) :is(.halftone,.dither,.glow,.waves,.bloom,.photo){display:none}
+
+/* ────────── 生命靈數擴充：圖示、流年詳解、開運對照、對照表 ────────── */
+.ico{width:1em;height:1em;display:inline-block;vertical-align:-.14em;flex:none}
+.ico *{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.geo-deco{position:absolute;right:140px;top:50%;width:620px;height:620px;transform:translateY(-50%);pointer-events:none;color:var(--ink);opacity:.16;z-index:0}
+.geo-deco svg{width:100%;height:100%}
+.geo svg *{fill:none;stroke:currentColor;stroke-width:1.2}
+.slide.on .spin{animation:spin 60s linear infinite;transform-origin:center;transform-box:fill-box}
+@keyframes spin{to{transform:rotate(360deg)}}
+.slide.on .geo .gl{stroke-dasharray:3000;stroke-dashoffset:3000;animation:draw 2.4s cubic-bezier(.16,1,.3,1) forwards}
+
+/* 五行色片 */
+.chip{display:inline-flex;align-items:center;gap:12px;padding:10px 22px 10px 16px;border-radius:999px;font-family:var(--tc);font-weight:700;font-size:24px;color:#fff}
+.chip .ico{font-size:28px}
+.sw{display:inline-block;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);vertical-align:-6px;margin-right:6px}
+
+/* 流年詳解頁 */
+.yr{display:grid;grid-template-columns:520px 1fr;gap:90px;align-items:center;flex:1;position:relative;z-index:1;padding-top:30px}
+.yr-l{position:relative}
+.yr-l .geo{position:absolute;left:-40px;top:-60px;width:460px;height:460px;color:var(--ink);opacity:.18}
+.yr-l .geo svg{width:100%;height:100%}
+.yr-num{font-family:var(--display);font-size:300px;line-height:.85;position:relative}
+.yr-name{font-family:var(--tc);font-weight:700;font-size:64px;margin:26px 0 22px;position:relative}
+.yr-kw{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.yr-kw span{border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:20px;color:var(--ink2);background:var(--card)}
+.yr-r{display:flex;flex-direction:column}
+.yr-row{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--line);align-items:start}
+.yr-row:last-of-type{border-bottom:1px solid var(--line)}
+.yr-row .k{display:flex;align-items:center;gap:14px;font-family:var(--tc);font-weight:700;font-size:28px}
+.yr-row .k .ico{font-size:34px;color:var(--accent)}
+.yr-row ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.yr-row li{font-size:23px;line-height:1.5;color:var(--ink2);padding-left:18px;position:relative}
+.yr-row li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--accent);opacity:.7}
+.yr-line{margin-top:34px;font-family:var(--tc);font-weight:600;font-size:34px;line-height:1.4}
+.yr-line::before{content:"「";color:var(--accent)}.yr-line::after{content:"」";color:var(--accent)}
+
+/* 開運對照頁 */
+.lk-top{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.lk-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;min-height:270px;display:flex;flex-direction:column}
+.lk-card .k{font-size:16px;letter-spacing:.08em;color:var(--mute);font-weight:500;display:flex;align-items:center;gap:10px}
+.lk-card .k .ico{font-size:22px}
+.lk-sw{display:flex;gap:12px;margin:22px 0 16px}
+.lk-sw i{width:64px;height:64px;border-radius:50%;border:1px solid var(--line);display:block}
+.lk-card .nm{font-family:var(--tc);font-weight:700;font-size:36px}
+.lk-card .why{font-size:20px;line-height:1.55;color:var(--mute);margin-top:8px}
+.lk-bot{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:22px}
+.lk-it{border-top:1px solid var(--ink);padding-top:20px}
+.lk-it .k{display:flex;align-items:center;gap:12px;font-family:var(--tc);font-weight:700;font-size:26px}
+.lk-it .k .ico{font-size:32px;color:var(--accent)}
+.lk-it .d{font-size:21px;line-height:1.6;color:var(--ink2);margin-top:10px}
+
+/* 對照表 */
+.tbl{width:100%;border-collapse:collapse;margin-top:40px;font-size:24px}
+.tbl th{text-align:left;font-size:15px;letter-spacing:.08em;color:var(--mute);font-weight:500;padding:0 18px 14px;border-bottom:1px solid var(--ink)}
+.tbl td{padding:15px 18px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:middle;line-height:1.35}
+.tbl td:first-child{font-family:var(--display);font-size:40px;color:var(--ink);width:90px;line-height:1}
+.tbl .elc{display:inline-flex;align-items:center;gap:8px;font-family:var(--tc);font-weight:700}
+.tbl .elc .ico{font-size:28px}
+.tbl.dense td{padding:11px 18px;font-size:22px}
+.tbl.dense td:first-child{font-size:34px}
+
+/* 卡片圖示、四欄 */
+.col .ci{font-size:48px;color:var(--accent);margin-bottom:18px}
+.step .si{font-size:40px;color:var(--accent);position:absolute;right:0;top:20px}
+
+/* 五行圖、九宮循環 */
+.wx{display:grid;grid-template-columns:760px 1fr;gap:80px;align-items:center;margin-top:20px}
+.wx svg{width:760px;height:620px;overflow:visible}
+.wx svg text{font-family:var(--tc);fill:currentColor}
+.wx .legend div{display:flex;gap:18px;align-items:center;font-size:24px;line-height:1.5;color:var(--ink2);padding:18px 0;border-bottom:1px solid var(--line)}
+.wx .legend b{font-family:var(--tc);font-size:30px;color:var(--ink);min-width:120px}
+.wx .legend i{width:60px;height:0;border-top:2px solid currentColor;display:block;flex:none}
+.wx .legend i.dash{border-top-style:dashed}
+
+.wx .node{transform-origin:center;transform-box:fill-box;opacity:0}
+.wx .lk{stroke-dasharray:600;stroke-dashoffset:600}
+.slide.on .wx .node{animation:dgPop .7s cubic-bezier(.34,1.56,.64,1) both}
+.slide.on .wx .lk{animation:dgDraw 1s cubic-bezier(.16,1,.3,1) both}
+
+/* 介面 */
+#cnt{position:absolute;bottom:52px;right:120px;font-size:14px;letter-spacing:.08em;color:var(--mute);z-index:9}
+#hint{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);font-family:var(--body);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);z-index:20;pointer-events:none;transition:opacity 1s}
+#hint.hide{opacity:0}
+#notes{position:fixed;right:0;top:0;bottom:0;width:380px;background:#14130F;color:#EDEAE5;padding:30px 28px;font-size:16px;line-height:1.8;transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:30;overflow:auto;border-left:1px solid rgba(255,255,255,.1)}
+#notes.open{transform:none}
+#notes .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#A79F96;margin-bottom:14px}
+#notes .next{margin-top:28px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#A79F96}
+#grid{position:fixed;inset:0;background:#0f0f0e;z-index:40;display:none;overflow:auto;padding:40px}
+#grid.open{display:block}
+#grid .g{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+#grid .cell{aspect-ratio:16/9;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;border:2px solid transparent;background:var(--bg)}
+#grid .cell:hover,#grid .cell.cur{border-color:#EDEAE5}
+#grid .cell .mini{position:absolute;inset:0;transform:scale(.16);transform-origin:top left;width:1920px;height:1080px;pointer-events:none}
+#grid .cell .num{position:absolute;bottom:8px;left:10px;font-size:11px;color:#fff;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:4px}
+#rotate{display:none}
+@media (max-width:700px) and (orientation:portrait) and (pointer:coarse){#rotate{display:flex;position:fixed;inset:0;z-index:50;background:#0f0f0e;color:#EDEAE5;align-items:center;justify-content:center;font-family:var(--tc);font-size:15px}}
+@media print{@page{size:1920px 1080px;margin:0}html,body{overflow:visible;background:#fff;height:auto}#wrap{position:static}#stage{position:static;transform:none!important;box-shadow:none;height:auto}.slide{position:relative;opacity:1!important;visibility:visible!important;width:1920px;height:1080px;page-break-after:always}.a,.w,.dither{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important}#bar,#cnt,#hint,#notes,#grid{display:none!important}}
+.bd{display:grid;grid-template-columns:1fr 520px;gap:80px;align-items:center;margin-top:56px}
+.bd-track{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--line);padding-top:0}
+.bd-st{position:relative;padding:34px 18px 0 0}
+.bd-st:before{content:"";position:absolute;top:-9px;left:0;width:16px;height:16px;border-radius:50%;background:var(--card);border:2px solid var(--mute)}
+.bd-st.hit:before{background:var(--accent,#D4520C);border-color:var(--accent,#D4520C);width:22px;height:22px;top:-12px}
+.bd-st .t{font-family:var(--tc);font-weight:700;font-size:30px}
+.bd-st .d{color:var(--mute);font-size:21px;margin-top:8px}
+.bd-st.hit .t{color:var(--accent,#D4520C)}
+.bd-year{position:relative;height:300px;overflow:hidden;font-family:var(--display);font-size:260px;line-height:300px;letter-spacing:-.04em}
+.bd-year span{position:absolute;left:0;top:0}
+.slide.on .bd-year .y0{animation:bdOut .7s cubic-bezier(.7,0,.3,1) 2.1s both}
+.slide.on .bd-year .y1{color:var(--accent,#D4520C);animation:bdIn .7s cubic-bezier(.16,1,.3,1) 2.3s both}
+@keyframes bdOut{from{transform:none;opacity:1}to{transform:translateY(-100%);opacity:0}}
+@keyframes bdIn{from{transform:translateY(100%);opacity:0}to{transform:none;opacity:1}}
+.bd-note{margin-top:40px;font-size:24px;color:var(--mute)}
+@media print{.bd-year .y0{display:none}.bd-year .y1{transform:none!important;opacity:1!important}}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage"></div></div>
+<div id="rotate">把手機橫放，簡報會滿版</div>
+<div id="hint">← → 翻頁 · F 全螢幕 · N 講者備註 · G 總覽 · S 切皮膚 · ⌘P 印成 PDF</div>
+<div id="notes"><div class="k">講者備註</div><div id="notes-body"></div><div class="next" id="notes-next"></div></div>
+<div id="grid"><div class="g" id="grid-body"></div></div>
+
+<script>
+/* ═══════════ 內容：只動這一段 ═══════════
+   skin："greige"（灰調機構）或 "midnight"（午夜霧光）。按 S 也可以即時切換看
+   type：cover / agenda / points / stat / quote / cols / steps / vs / figure / cta
+   dark:true 讓那頁用深色；不填則封面、金句、行動頁自動深色
+*/
+const DECK = {
+  skin:"bloom",
+  brand:"樂心學院 · 2027 流年運勢自己看",
+  slides:[
+    /* ── 開場 ── */
+    { type:"cover", label:"樂心學院 · 流年完整課", title:"2027 流年運勢<em>自己看</em>", en:"Your Personal Year 2027", lead:"用國曆生日算出今年的主題，學會用顏色，替自己的運勢加分",
+      notes:"開場第一句：今天上完，你會自己算出 2027 的流年，還知道今年該穿什麼、皮夾該選什麼顏色。提醒：先請學員把國曆生日寫在紙上。" },
+    { type:"agenda", label:"課程地圖", title:"五個單元", desc:"先學會算，再看懂九種流年，最後把顏色和財富用在生活裡。", items:["怎麼算：國曆生日算出流年數","2027 流年完整解析：1 到 9 號逐年對照","運用色彩補足你的運勢","顏色開運實戰：穿搭、飾品、居家","財富色：主命數與你的皮夾"],
+      notes:"第一句：我們分五個單元走，單元二和單元三是整門課最重要的對照手冊。提醒：建議學員把單元三的色卡存下來。" },
+    { type:"quote", label:"開場", quote:"每一年，生命都給你一個不同的主題。", attr:"生命靈數 · 流年",
+      notes:"第一句：有些年做什麼都順，有些年怎麼做都卡。提醒：停三秒，讓學員回想自己的經驗。" },
+    { type:"stat", geo:9, label:"流年循環", number:"9", text:"種流年，九年走完一輪，再從 1 開始",
+      notes:"第一句：流年一共九種。提醒：讓數字跑完再開口。" },
+    { type:"quote", label:"為什麼要學", quote:"知道今年的主題，下決定就不會躊躇不前。", attr:"生命靈數 · 流年",
+      notes:"第一句：學流年不是為了算命，是為了做決定。提醒：問學員今年有沒有一個卡住的決定。" },
+
+    /* ── 單元一 怎麼算 ── */
+    { type:"quote", label:"單元一 · 怎麼算", quote:"你只需要一樣東西：國曆生日。", attr:"單元一",
+      notes:"第一句：不用時辰，也不用農曆，以實際出生的西元日期為主。提醒：確認每個人都寫好了。" },
+    { type:"cols", label:"單元一 · 用哪一個生日", title:"生日要用<em>哪一個</em>", cols:[{icon:"cal",n:"01 · 首選",t:"實際出生日",items:["出生落地那一天","用西元，不用農曆","準確率最高"]},{icon:"pen",n:"02 · 不知道時",t:"身分證生日",items:["不知道真正的生日","代表你對外的樣子","用久了個性會靠近它"]},{icon:"warn",n:"03 · 為什麼會不準",t:"早期晚報戶口",items:["以前孩子不好養活","醫療差、窮、戰亂","養一陣子才去報戶口"]}],
+      notes:"第一句：算流年要用你實際出生的那一天，用西元，不用農曆。提醒：真實生日是對內的你，身分證生日是對外的你；早期晚報戶口的原因可以多講一點。" },
+    { type:"diagram", kind:"flow", label:"單元一 · 第一個動作", title:"先判斷，今年用<em>哪一年</em>", items:[["看今天日期","幾年幾月幾日"],["生日過了嗎","跟今年的生日比"],["過了","用今年 2026 算"],["還沒過","用去年 2025 算"]],
+      notes:"第一句：第一個動作，先判斷今年要用哪一年算。提醒：以 2026 年為例，生日過了用 2026，還沒過用 2025。" },
+    { type:"bday", label:"單元一 · 重要提醒", title:"流年從<em>生日</em>那天換", from:"2025", to:"2026", steps:[["1 月 1 日","還是 2025"],["9 月 14 日","生日前一天，還是 2025"],["9 月 15 日 · 生日","換成 2026"]], note:"不是 1 月 1 日，是你生日那一天",
+      notes:"第一句：流年從你生日那天開始換，不是 1 月 1 日。提醒：讓數字跳完再講，以 9 月 15 日生日為例。" },
+    { type:"diagram", kind:"flow", label:"單元一 · 怎麼算", title:"四步算出你的<em>流年數</em>", items:[["寫下月日","國曆生日的月與日"],["加上年份","判斷好的那一年也拆開"],["全部相加","數字一個一個加"],["加到個位數","就是你的流年數"]],
+      notes:"【待老師確認算法】第一句：只取月跟日，不用出生年，再加上判斷好的那一年。提醒：講一步停一步。" },
+    { type:"stat", label:"範例 · 3 月 15 日生", number:"9", text:"0 + 3 + 1 + 5 = 9，先把月日拆開加起來",
+      notes:"第一句：用 3 月 15 日當例子。提醒：月份補零寫成 03。" },
+    { type:"stat", label:"範例 · 加上年份", number:"11", text:"2027 拆開：2 + 0 + 2 + 7 = 11",
+      notes:"第一句：再把 2027 拆開加。提醒：讓數字跑完。" },
+    { type:"stat", geo:2, label:"範例 · 加到個位數", number:"2", text:"9 + 11 = 20，2 + 0 = 2，這個人 2027 走二號流年",
+      notes:"第一句：兩個加起來是 20，再拆一次就是 2。提醒：兩位數就繼續拆，拆到個位數。" },
+    { type:"quote", label:"練習", quote:"暫停一下，拿出紙筆，算你自己的。", attr:"練習時間 · 3 分鐘",
+      notes:"第一句：三分鐘，算出自己的 2027 流年數。提醒：真的停下來等，請學員留言自己的數字。" },
+
+    /* ── 單元二 2027 流年完整解析 ── */
+    { type:"cycle", label:"單元二 · 2027 流年完整解析", title:"九年一個<em>循環</em>", items:[["開創","播種","紅"],["合作","等待","橙"],["表達","曝光","黃"],["地基","紮根","綠"],["變動","轉彎","藍"],["責任","照顧","靛"],["內省","沉澱","紫"],["收成","回報","金"],["完成","放下","白"]],
+      notes:"第一句：九種流年像一年四季，有播種就有收成。提醒：圓圈的顏色就是它的代表色，等一下會用到。" },
+    { type:"quote", label:"單元二 · 1 到 9 號逐年對照", quote:"找到你的數字，這一頁就是你的說明書。", attr:"單元二 · 機會、要小心、適合做",
+      notes:"第一句：接下來每一號流年一頁，看今年的機會、要小心的事、適合做的事。提醒：請學員翻到自己的號碼時舉手或留言。" },
+
+    { type:"year", n:1, name:"開創年", el:"紅", kw:["開始","獨立","領導"], label:"單元二 · 1 號流年",
+      chance:["創業、開公司、升主管","從零學一項新技能","開發海外與新市場"], care:["衝動下錯決定","脾氣急，影響合作意願","什麼都一個人扛"], todo:["接下領導的角色","啟動拖很久的計畫","去遠方拓荒"], line:"今年種下的種子，決定接下來九年",
+      notes:"【待老師確認】第一句：我自己今年就走一號，很多事情從零開始。提醒：講有人約合夥開公司的例子。" },
+    { type:"year", n:2, name:"合作年", el:"橙", kw:["合作","耐心","關係"], label:"單元二 · 2 號流年",
+      chance:["遇到合夥人與貴人","感情升溫、關係修復","在團隊裡被看見"], care:["猶豫不決","情緒起伏大","委屈自己討好別人"], todo:["經營人脈與伴侶","當好輔助的角色","簽約前多比較"], line:"慢下來不是退步，是在等對的人",
+      notes:"【待老師確認】第一句：二號年不適合單打獨鬥。提醒：問學員今年最想跟誰合作。" },
+    { type:"year", n:3, name:"表達年", el:"黃", kw:["表達","創意","曝光"], label:"單元二 · 3 號流年",
+      chance:["經營社群、開講座","認識很多新朋友","作品被更多人看見"], care:["話太多、說錯話","分心，什麼都想做","享樂花錢超支"], todo:["開始發文、出作品","上台、接受訪問","學一項才藝"], line:"今年你說出口的，會被聽見",
+      notes:"【待老師確認】第一句：三號年最適合讓別人看見你。提醒：問學員今年有沒有想發表的東西。" },
+    { type:"year", n:4, name:"地基年", el:"綠", kw:["規劃","紀律","穩定"], label:"單元二 · 4 號流年",
+      chance:["存錢、買房、建立制度","考證照、系統化學習","把工作寫成 SOP"], care:["硬撐、太累","固執不肯變通","進度慢就焦慮"], todo:["訂好年度計畫","整理財務與保險","養成一個長期習慣"], line:"四個腳的桌子最穩，一步一腳印",
+      notes:"【待老師確認】第一句：高腳杯一推就倒，四個腳的桌子推不動。提醒：用講稿裡四個腳的比喻。" },
+    { type:"year", n:5, name:"變動年", el:"藍", kw:["變化","自由","冒險"], label:"單元二 · 5 號流年",
+      chance:["換工作、轉跑道","搬家、出國、旅行","接觸新領域與新的人"], care:["衝動辭職","三分鐘熱度","承諾太多做不到"], todo:["嘗試一件新東西","出一趟遠門","更新自己的形象"], line:"變動不是壞事，是換一條更適合的路",
+      notes:"【待老師確認】第一句：五號年變化最多。提醒：變動前先列優缺點。" },
+    { type:"year", n:6, name:"責任年", el:"靛", kw:["家庭","愛","照顧"], label:"單元二 · 6 號流年",
+      chance:["結婚、生子、搬新家","家人關係修復","服務型工作被肯定"], care:["過度付出累垮自己","愛操心、管太多","攬下別人的責任"], todo:["多陪伴家人","整理居家環境","經營伴侶關係"], line:"先照顧好自己，才有力氣照顧別人",
+      notes:"【待老師確認】第一句：六號年重心會回到家裡。提醒：舉家庭的例子。" },
+    { type:"year", n:7, name:"內省年", el:"紫", kw:["學習","沉澱","智慧"], label:"單元二 · 7 號流年",
+      chance:["進修、考證、深度學習","釐清人生方向","心靈與心理成長"], care:["想太多、孤僻","不信任別人","睡眠與健康"], todo:["讀書、上課","安排獨處的時間","寫作、整理經驗"], line:"往內看清楚，下一年才收得到",
+      notes:"【待老師確認】第一句：七號年適合充電，不適合衝。提醒：接到八號收成年，讓學員知道沉澱是有用的。" },
+    { type:"year", n:8, name:"收成年", el:"金", kw:["財富","事業","權力"], label:"單元二 · 8 號流年",
+      chance:["加薪、升遷、業績成長","投資理財有回收","事業擴張"], care:["太看重錢、變強勢","工作過勞","大筆投資衝太快"], todo:["談加薪、談條件","換一個新皮夾","擴大事業規模"], line:"前面七年種的，今年收成",
+      notes:"【待老師確認】第一句：八號年是收成年，也是最適合換皮夾的一年。提醒：預告單元三和單元五。" },
+    { type:"year", n:9, name:"完成年", el:"白", kw:["結束","放下","感恩"], label:"單元二 · 9 號流年",
+      chance:["結案、完成大計畫","清理舊關係與雜物","助人與公益"], care:["情緒低落、捨不得","抓著舊的不放","太早開新事業"], todo:["斷捨離","完成拖延的事","感謝與道別"], line:"清空，是為了迎接下一輪的 1",
+      notes:"【待老師確認】第一句：九號年是結束，也是準備。提醒：放下不是失去。" },
+    /* ── 單元三 運用色彩補足你的運勢 ── */
+    { type:"table", dense:true, label:"單元三 · 流年色卡", title:"每一號的<em>兩個顏色</em>", head:["流年","代表色 · 不足時補強","太旺時 · 調和"], rows:[
+      ["1",{sw:["紅"],t:"紅"},{sw:["紫"],t:"紫"}],
+      ["2",{sw:["橙"],t:"橙"},{sw:["靛"],t:"靛"}],
+      ["3",{sw:["黃"],t:"黃"},{sw:["藍"],t:"藍"}],
+      ["4",{sw:["綠"],t:"綠"},{sw:["粉"],t:"粉"}],
+      ["5",{sw:["藍"],t:"藍"},{sw:["黃"],t:"黃"}],
+      ["6",{sw:["靛"],t:"靛"},{sw:["橙"],t:"橙"}],
+      ["7",{sw:["紫"],t:"紫"},{sw:["紅"],t:"紅"}],
+      ["8",{sw:["金"],t:"金"},{sw:["白"],t:"白"}],
+      ["9",{sw:["白"],t:"白"},{sw:["金"],t:"金"}]],
+      note:"這張表是整門課的鑰匙，建議存下來",
+      notes:"【8、9 號調和色待 Emma 確認】第一句：每一號只有兩個顏色，代表色就是補強色，太旺的時候換調和色。提醒：請學員截圖。" },
+    { type:"quote", label:"單元三 · 原則", quote:"太旺的調和，不足的補上。", attr:"單元三",
+      notes:"第一句：同一個流年，有人覺得能量太滿，有人覺得使不上力。不足就穿代表色補上，太旺就換調和色。提醒：停三秒。" },
+
+    { type:"luck", label:"單元三 · 1 號流年 · 開運對照", title:"1 號流年：把<em>紅</em>用對地方", main:{c:["紅"],name:"紅",why:"代表色，行動力與領導力"}, over:{c:["紫"],name:"紫",why:"衝動暴躁時穿"},
+      wear:"少穿大紅，太躁時改穿紫色系", acc:"紅色系飾品，太躁時換紫色", life:"大決定隔一晚再回覆", home:"放一件紅色小物，太躁時換成紫色",
+      notes:"第一句：一號的代表色是紅，再穿一堆紅就是能量加能量。提醒：這頁是講稿原本的例子，可以多講一點自己的經驗。" },
+
+    { type:"luck", label:"單元三 · 2 號流年 · 開運對照", title:"2 號流年：讓<em>關係</em>穩穩流動", main:{c:["橙"],name:"橙",why:"代表色，柔軟與合作"}, over:{c:["靛"],name:"靛",why:"情緒化、猶豫時穿"},
+      wear:"平常穿橙色，情緒起伏大時換靛色", acc:"橙色或靛色系飾品", life:"寫情緒日記，每週約重要的人吃飯", home:"臥室擺設成雙成對",
+      notes:"第一句：二號的人緣色是橙，情緒太滿就換靛色讓自己清楚一點。提醒：舉一個猶豫太久錯過機會的例子。" },
+
+    { type:"luck", label:"單元三 · 3 號流年 · 開運對照", title:"3 號流年：讓<em>光</em>被看見", main:{c:["黃"],name:"黃",why:"代表色，熱情與表現力"}, over:{c:["藍"],name:"藍",why:"怕說錯話、太浮誇時穿"},
+      wear:"要曝光、拍照時穿亮黃", acc:"黃色系耳環，太浮時換藍色", life:"每天記一個靈感，開口前停三秒", home:"書桌放一件黃色小物",
+      notes:"第一句：要上台、要拍影片的日子，就穿黃色。提醒：示範一套上台穿搭。" },
+
+    { type:"luck", label:"單元三 · 4 號流年 · 開運對照", title:"4 號流年：把<em>地基</em>打穩", main:{c:["綠"],name:"綠",why:"代表色，踏實與穩定"}, over:{c:["粉"],name:"粉",why:"悶、固執時穿"},
+      wear:"綠色為主，悶的時候加一點粉", acc:"綠色系飾品，悶時換粉色", life:"固定作息，每週檢查一次進度", home:"文件歸檔，書桌保持整齊",
+      notes:"第一句：四號年本身就穩，要小心的是太悶。提醒：問學員今年最想養成什麼習慣。" },
+
+    { type:"luck", label:"單元三 · 5 號流年 · 開運對照", title:"5 號流年：往<em>對的方向</em>轉彎", main:{c:["藍"],name:"藍",why:"代表色，突破與表達"}, over:{c:["黃"],name:"黃",why:"靜不下來時穿"},
+      wear:"想突破穿藍，心太浮時換黃色", acc:"藍色系飾品，心浮時換黃色", life:"大決定先列優缺點，每月一次小旅行", home:"換個擺設或換窗簾",
+      notes:"第一句：心太浮的時候穿黃色，讓自己踩穩一點。提醒：問學員今年想改變什麼。" },
+
+    { type:"luck", label:"單元三 · 6 號流年 · 開運對照", title:"6 號流年：用<em>溫暖</em>照顧自己", main:{c:["靛"],name:"靛",why:"代表色，包容與照顧"}, over:{c:["橙"],name:"橙",why:"操心太多時穿"},
+      wear:"靛色穩住自己，操心太多時換橙色", acc:"靛色系飾品，累的時候換橙色", life:"每週留一段時間給自己，學會說不", home:"擺家人合照，餐桌保持乾淨",
+      notes:"第一句：六號人最常忘記照顧自己。提醒：請學員寫下一件只為自己做的事。" },
+
+    { type:"luck", label:"單元三 · 7 號流年 · 開運對照", title:"7 號流年：讓<em>心</em>靜下來", main:{c:["紫"],name:"紫",why:"代表色，智慧與直覺"}, over:{c:["紅"],name:"紅",why:"想太多時穿"},
+      wear:"紫色幫助沉澱，想太多時換紅色", acc:"紫色系飾品，想太多時換紅色", life:"規律睡眠，每週運動曬太陽", home:"布置一個安靜的閱讀角",
+      notes:"第一句：七號年最怕想太多，用紅色把自己拉回現實。提醒：問學員今年想學什麼。" },
+
+    { type:"luck", label:"單元三 · 8 號流年 · 開運對照", title:"8 號流年：把<em>財富</em>收進來", main:{c:["金"],name:"金",why:"代表色，財富與事業"}, over:{c:["白"],name:"白",why:"太強勢時穿"},
+      wear:"談錢的場合穿金，太強勢時換白", acc:"金色系飾品，太強勢時換白色", life:"每天記帳，收成時分享一點出去", home:"玄關保持乾淨明亮",
+      notes:"【調和色是草案，待 Emma 確認】第一句：要談加薪、談合作，就穿金色。提醒：分享出去，財才流得進來。" },
+
+    { type:"luck", label:"單元三 · 9 號流年 · 開運對照", title:"9 號流年：<em>清空</em>再出發", main:{c:["白"],name:"白",why:"代表色，收斂與完成"}, over:{c:["金"],name:"金",why:"低落、冷淡時穿"},
+      wear:"白色乾淨俐落，低落時加一點金", acc:"白色系飾品，低落時換金色", life:"每週清一個抽屜，寫感謝清單", home:"年底前來一次大掃除",
+      notes:"【調和色是草案，待 Emma 確認】第一句：九號年要把空間清出來，明年的一號才進得來。提醒：請學員寫下今年要放下的一件事。" },
+
+    { type:"table", dense:true, label:"單元三 · 總整理", title:"九種流年<em>速查表</em>", head:["流年","主題","代表色 · 不足時穿","太旺時穿"], rows:[
+      ["1","開創年",{sw:["紅"],t:"紅"},{sw:["紫"],t:"紫"}],
+      ["2","合作年",{sw:["橙"],t:"橙"},{sw:["靛"],t:"靛"}],
+      ["3","表達年",{sw:["黃"],t:"黃"},{sw:["藍"],t:"藍"}],
+      ["4","地基年",{sw:["綠"],t:"綠"},{sw:["粉"],t:"粉"}],
+      ["5","變動年",{sw:["藍"],t:"藍"},{sw:["黃"],t:"黃"}],
+      ["6","責任年",{sw:["靛"],t:"靛"},{sw:["橙"],t:"橙"}],
+      ["7","內省年",{sw:["紫"],t:"紫"},{sw:["紅"],t:"紅"}],
+      ["8","收成年",{sw:["金"],t:"金"},{sw:["白"],t:"白"}],
+      ["9","完成年",{sw:["白"],t:"白"},{sw:["金"],t:"金"}]],
+      notes:"第一句：這張是單元三的總整理，一張就能查全家人。提醒：請學員截圖存起來。" },
+
+    /* ── 單元四 顏色開運實戰 ── */
+    { type:"quote", label:"單元四 · 顏色開運實戰", quote:"同一個顏色，穿在不同的年，效果不一樣。", attr:"單元四",
+      notes:"【待老師確認】第一句：一號年穿紅是補強，七號年想太多的時候，紅反而是拿來調和的。提醒：問學員最常穿什麼顏色。" },
+    { type:"cols", label:"單元四 · 顏色用在哪裡", title:"四個地方放<em>顏色</em>", cols:[{icon:"shirt",n:"01 · 衣服",t:"效果最明顯",items:["面積最大","重要場合優先用","上衣比褲子明顯"]},{icon:"gem",n:"02 · 飾品",t:"天天補能量",items:["每天戴得到","水晶、手鍊、耳環","小面積也有用"]},{icon:"phone",n:"03 · 隨身物",t:"不知不覺加分",items:["手機殼、包包","筆、名片夾","皮夾看單元五"]},{icon:"home",n:"04 · 居家",t:"長期的場",items:["枕頭套、窗簾","植物、擺件","書桌與玄關"]}],
+      notes:"第一句：顏色不是只有衣服，四個地方都可以用。提醒：請學員挑一個今天就能改的。" },
+    { type:"vs", label:"單元四 · 1 號流年實戰", title:"同一股<em>衝勁</em>，兩種用法", left:{k:"能量太旺",big:"躁",lab:"衝動、下錯決定，還會影響別人跟你合作的意願"}, right:{k:"轉成行動力",big:"拓",lab:"開發海外、去遠方，從零到有地拓荒"},
+      notes:"第一句：一號年衝勁很強，有好有壞，看你怎麼用。提醒：左邊講完停一下再講右邊。" },
+    { type:"diagram", kind:"flow", label:"單元四 · 1 號流年實戰", title:"把衝勁<em>調和</em>下來", items:[["能量太旺","容易衝動暴躁"],["多喝水","讓自己緩下來"],["少穿紅","不再幫自己加能量"],["改穿紫","用調和色緩和"]],
+      notes:"第一句：能量太滿，就用調和色把它緩下來。提醒：每一步都對應到生活裡做得到的事。" },
+    { type:"steps", label:"單元四 · 練習", title:"四步挑出你的<em>今年色</em>", steps:[{icon:"cal",t:"算流年數",d:"用單元一的方法"},{icon:"cycle",t:"查兩個顏色",d:"翻單元三速查表"},{icon:"warn",t:"判斷狀態",d:"最近是太旺，還是不足"},{icon:"shirt",t:"挑顏色",d:"不足穿代表色，太旺穿調和色"}],
+      notes:"第一句：現在換你，四步挑出今年的顏色。提醒：給學員兩分鐘。" },
+
+    /* ── 單元五 財富色 ── */
+    { type:"vs", label:"單元五 · 財富色", title:"你的皮夾，選對<em>顏色</em>了嗎", left:{k:"大多數人",big:"黑",lab:"黑色、咖啡色，耐髒又耐看"}, right:{k:"這堂課教你",big:"你的色",lab:"財富不一定是金色，要看屬於你的顏色"},
+      notes:"第一句：大家想到財富就想到金色，其實不見得。提醒：請學員拿出自己的皮夾。" },
+    { type:"quote", label:"單元五 · 財富色", quote:"黑色皮夾耐髒，錢卻比較留不住。", attr:"單元五",
+      notes:"【待老師確認】第一句：黑色耐髒，很多人的皮夾都是黑的。提醒：停三秒，讓學員看自己的皮夾。" },
+    { type:"vs", label:"單元五 · 兩個數字", title:"財富看<em>主命數</em>，今年看流年", left:{k:"流年數 · 每年換",big:"流年",lab:"月日加今年，決定今年穿什麼顏色"}, right:{k:"主命數 · 一輩子",big:"主命",lab:"生日年月日全部相加，決定你的財富色"},
+      notes:"【待老師確認】第一句：流年每年換，主命數一輩子不變，所以財富色只有一個，也不用每年換。提醒：把兩個數字分清楚。" },
+    { type:"diagram", kind:"flow", label:"單元五 · 主命數怎麼算", title:"算出你的<em>主命數</em>", items:[["寫下生日","年月日全部寫出來"],["全部相加","每個數字一個一個加"],["加到個位數","就是主命數"],["查代表色","就是你的財富色"]],
+      notes:"【待老師確認算法】第一句：主命數要連出生年一起加。提醒：示範下一頁的例子。" },
+    { type:"stat", geo:1, label:"範例 · 1990 年 3 月 15 日", number:"1", text:"1+9+9+0+0+3+1+5 = 28，2+8 = 10，1+0 = 1，主命數是 1，財富色是紅",
+      notes:"第一句：同一個人，流年是 2，主命數是 1。提醒：讓學員算自己的主命數。" },
+    { type:"quote", label:"單元五 · 財富原理", quote:"你的財富色只有一個：主命數的代表色。", attr:"單元五",
+      notes:"【待老師確認】第一句：財富色不用挑來挑去，主命數是幾號，就用那一號的代表色。提醒：停三秒。" },
+    { type:"table", dense:true, label:"單元五 · 財富色對照", title:"主命數<em>財富色</em>表", head:["主命數","財富色"], rows:[
+      ["1",{sw:["紅"],t:"紅"}],
+      ["2",{sw:["橙"],t:"橙"}],
+      ["3",{sw:["黃"],t:"黃"}],
+      ["4",{sw:["綠"],t:"綠"}],
+      ["5",{sw:["藍"],t:"藍"}],
+      ["6",{sw:["靛"],t:"靛"}],
+      ["7",{sw:["紫"],t:"紫"}],
+      ["8",{sw:["金"],t:"金"}],
+      ["9",{sw:["白"],t:"白"}]],
+      note:"範例主命數 1：皮夾選紅色",
+      notes:"【待老師確認】第一句：找到你的主命數那一列，那個顏色就是你的財富色。提醒：請學員截圖。" },
+    { type:"cols", label:"單元五 · 挑皮夾", title:"挑皮夾的<em>四個重點</em>", cols:[{icon:"wallet",n:"01 · 顏色",t:"財富色為主",items:["主色用你的財富色","一個顏色就好","全黑不建議"]},{icon:"coins",n:"02 · 款式",t:"讓錢躺平",items:["長夾鈔票不對折","真皮質感好","隔層足夠不爆滿"]},{icon:"check",n:"03 · 整理",t:"錢有地方住",items:["不放發票收據","鈔票同方向放","定期清空整理"]},{icon:"cal",n:"04 · 時機",t:"選對時間換",items:["8 號收成年換新","1 號開創年換新","生日後的一個月"]}],
+      notes:"【待老師確認】第一句：顏色選對了，還要讓錢住得舒服。提醒：請學員現場清一次皮夾。" },
+    { type:"cols", label:"單元五 · 不只皮夾", title:"財富色還能用在<em>這裡</em>", cols:[{icon:"phone",n:"隨身",t:"天天帶著",items:["手機殼","名片夾","包包"]},{icon:"home",n:"工作",t:"賺錢的地方",items:["收銀台、櫃台","辦公桌墊","收款的 QR 立牌"]},{icon:"shirt",n:"場合",t:"談錢的日子",items:["談加薪","簽約、收款","提案、報價"]}],
+      notes:"第一句：皮夾只是開始，跟錢有關的地方都可以用。提醒：做生意的學員可以從櫃台開始。" },
+    { type:"quote", label:"單元五 · 練習", quote:"算出主命數，打開皮夾看看顏色。", attr:"練習時間 · 3 分鐘",
+      notes:"第一句：現在算出你的主命數，查你的財富色。提醒：請學員留言自己的主命數與皮夾顏色。" },
+
+    /* ── 收尾 ── */
+    { type:"quote", label:"總結", quote:"好的發揮到極致，不好的提前減低。", attr:"2027 流年運勢自己看",
+      notes:"第一句：這就是學流年最大的用處。提醒：停三秒，再翻作業頁。" },
+    { type:"steps", label:"課後作業", title:"這週做三件事", steps:[{icon:"heart",t:"算全家人",d:"算出家人的 2027 流年，查速查表"},{icon:"shirt",t:"穿一次今年色",d:"照你的流年狀態，穿一次調和或補強色"},{icon:"wallet",t:"檢查皮夾",d:"對照主命數財富色表"}],
+      notes:"第一句：學會了，就先從家人開始算。提醒：請學員把結果分享到 LINE。" },
+    { type:"cta", label:"下一步", title:"想更了解<em>自己</em>？", lead:"下一套：生命藍圖探索。看懂你的天賦、你重複卡關的課題，還有跟誰互為貴人", button:"加 LINE 預約生命藍圖課程", url:"https://line.me/R/ti/p/@935reawl", note:"LINE ID：@935reawl",
+      notes:"第一句：流年看的是每一年，生命藍圖看的是你這一生。提醒：停在這頁。" }
+  ]
+};
+
+(function(){
+  const esc=s=>String(s==null?'':s);
+  const isTC=s=>/[一-鿿]/.test(s);
+  const T=(s,cls)=>isTC(s)?`<span class="${cls||'tc'}">${esc(s)}</span>`:esc(s); // 中文換中文字體
+  const words=s=>[...s].map((ch,i)=>`<span class="w" style="transition-delay:${.15+i*.035}s">${ch}</span>`).join('');
+  const dots=(n=17,r=18)=>{let out='';const c=(n-1)/2;for(let y=0;y<n;y++)for(let x=0;x<n;x++){const dx=(x-c)/c,dy=(y-c)/c,d=Math.sqrt(dx*dx+dy*dy);if(d>1)continue;const rr=r*(.15+.85*Math.pow(1-d*d,.6));out+=`<circle cx="${20+x*38}" cy="${20+y*38}" r="${rr.toFixed(2)}" style="animation-delay:${(d*1.6).toFixed(2)}s"/>`}return `<svg class="halftone" viewBox="0 0 ${n*38+2} ${n*38+2}">${out}</svg>`};
+  const stepDots=()=>`<svg class="dots" viewBox="0 0 64 64">${[...Array(16)].map((_,i)=>`<circle cx="${8+(i%4)*16}" cy="${8+Math.floor(i/4)*16}" r="${2+((i*7)%5)}" fill="currentColor" opacity=".7"/>`).join('')}</svg>`;
+  const bokeh=`<div class="bokeh"><i></i><i></i><i></i><i></i></div><div class="grainlayer"></div><div class="glow"></div><div class="bloom"><i></i><i></i><i></i><i></i></div>`;
+  const waves=()=>{let p='';for(let i=0;i<14;i++){const y=40+i*14,a=60+i*4;p+=`<path d="M0 ${y} C 300 ${y-a}, 600 ${y+a}, 900 ${y} S 1500 ${y+a}, 1680 ${y-20}" stroke="${['#E59BD6','#F5B98B','#C9A4F2'][i%3]}" style="animation-delay:${i*.08}s"/>`}return `<svg class="waves" viewBox="0 0 1680 260" preserveAspectRatio="none">${p}</svg>`};
+  const photo=(s)=>`<div class="photo">${s.photo?`<img src="${esc(s.photo)}" alt="">`:''}</div>`;
+
+  /* 動態圖解：kind = flow（流程）| stack（疊層）| orbit（環繞）| bars（長條） */
+  const DG={
+    flow:(items)=>{const n=items.length,W=1680,y=200,gap=W/(n),r=52;let out='';items.forEach((it,i)=>{const x=gap*i+gap/2;if(i)out+=`<line class="lk" x1="${x-gap+r}" y1="${y}" x2="${x-r}" y2="${y}" stroke="currentColor" stroke-width="1.5" style="animation-delay:${.5+i*.45}s"/>`;out+=`<g class="node" style="animation-delay:${.3+i*.45}s"><circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="currentColor" stroke-width="1.5"/><circle class="pulse" cx="${x}" cy="${y}" r="${r-14}" fill="currentColor" style="animation-delay:${i*.5}s"/><text class="num" x="${x}" y="${y+9}" text-anchor="middle" style="fill:var(--bg)">0${i+1}</text></g><g class="lbl" style="animation-delay:${.7+i*.45}s"><text class="t1" x="${x}" y="${y+120}" text-anchor="middle">${it[0]}</text><text class="t2" x="${x}" y="${y+156}" text-anchor="middle">${it[1]||''}</text></g>`});return `<svg viewBox="0 0 ${W} 420">${out}</svg>`},
+    stack:(items)=>{const n=items.length,W=1680,h=88,g=14;let out='';items.forEach((it,i)=>{const y=420-(i+1)*(h+g);const w=1100-i*90,x=(W-w)/2;out+=`<g class="node" style="animation-delay:${.3+i*.35}s"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="currentColor" opacity="${.12+i*.18}"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5"/><text class="t1" x="${x+34}" y="${y+h/2+11}">${it[0]}</text><text class="t2" x="${x+w-34}" y="${y+h/2+8}" text-anchor="end">${it[1]||''}</text></g>`});return `<svg viewBox="0 0 ${W} 440">${out}</svg>`},
+    orbit:(items)=>{const W=1680,cx=W/2,cy=230,R=170;const center=items[0],sats=items.slice(1);let out=`<g class="node"><circle cx="${cx}" cy="${cy}" r="86" fill="currentColor"/><text class="t1" x="${cx}" y="${cy+11}" text-anchor="middle" style="fill:var(--bg)">${center[0]}</text></g><circle class="lk" cx="${cx}" cy="${cy}" r="${R}" stroke="currentColor" stroke-width="1" stroke-dasharray="4 8" opacity=".5" style="animation:none;stroke-dashoffset:0"/><g class="orb">`;sats.forEach((it,i)=>{const a=(i/sats.length)*Math.PI*2-Math.PI/2,x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R;out+=`<g class="node" style="animation-delay:${.4+i*.2}s"><circle cx="${x}" cy="${y}" r="40" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/><g class="orb" style="animation-direction:reverse;transform-origin:${x}px ${y}px"><text class="num" x="${x}" y="${y+9}" text-anchor="middle">0${i+1}</text></g></g>`});out+=`</g>`;sats.forEach((it,i)=>{const a=(i/sats.length)*Math.PI*2-Math.PI/2,x=cx+Math.cos(a)*(R+120),y=cy+Math.sin(a)*(R+90);out+=`<g class="lbl" style="animation-delay:${.8+i*.2}s"><text class="t1" x="${x}" y="${y}" text-anchor="middle">${it[0]}</text><text class="t2" x="${x}" y="${y+32}" text-anchor="middle">${it[1]||''}</text></g>`});return `<svg viewBox="0 0 ${W} 480">${out}</svg>`},
+    bars:(items)=>{const W=1680,max=Math.max(...items.map(i=>+i[1]||0)),h=54,g=26;let out='';items.forEach((it,i)=>{const y=i*(h+g)+10,w=Math.max(60,(+it[1]||0)/max*1200);out+=`<text class="t1" x="0" y="${y+h/2+10}">${it[0]}</text><rect class="bar" x="340" y="${y}" width="${w}" height="${h}" rx="8" fill="currentColor" opacity="${i===0?1:.35}" style="animation-delay:${.3+i*.2}s"/><text class="num" x="${340+w+22}" y="${y+h/2+10}">${it[2]||it[1]}</text>`});return `<svg viewBox="0 0 ${W} ${items.length*(h+g)+20}">${out}</svg>`}
+  };
+  const R={
+    diagram:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2>${s.lead?`<p class="lead a" style="margin-top:18px;font-size:24px">${esc(s.lead)}</p>`:''}<div class="diagram">${(DG[s.kind]||DG.flow)(s.items||[])}</div></div>`,
+    cover:s=>`${bokeh}${dots(19,17)}${photo(s)}${waves()}<div class="center"><div class="label a">${esc(s.label)}</div><h1 class="h1 a">${T(s.title)}${s.en?`<br><em>${esc(s.en)}</em>`:''}</h1><p class="lead a">${esc(s.lead)}</p></div>`,
+    agenda:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><div class="two a"><h2 class="h2">${T(s.title)}</h2><div class="desc">${esc(s.desc||'')}</div></div><ul class="points a" style="margin-top:44px">${(s.items||[]).map((it,i)=>`<li><span class="n">0${i+1}</span><span class="t" style="font-size:30px">${esc(it)}</span></li>`).join('')}</ul></div>`,
+    points:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><ul class="points a">${(s.items||[]).map((it,i)=>Array.isArray(it)?`<li><span class="n">0${i+1}</span><span class="t">${esc(it[0])}<small>${esc(it[1])}</small></span></li>`:`<li><span class="n">0${i+1}</span><span class="t">${esc(it)}</span></li>`).join('')}</ul></div>`,
+    stat:s=>`<div class="dither"></div>${waves()}<div class="center"><div class="label a">${esc(s.label)}</div><div class="stat a" data-count="${esc(s.number)}">${esc(s.number)}</div><div class="stat-label a">${esc(s.text)}</div></div>`,
+    quote:s=>`${bokeh}<div class="center"><div class="label a">${esc(s.label)}</div><div class="quote"><span class="tc">${words(s.quote)}</span></div><div class="attr a" style="animation-delay:1.2s">${esc(s.attr)}</div></div>`,
+    cols:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><div class="cols">${(s.cols||[]).map((c,i)=>`<div class="col a" style="animation-delay:${.25+i*.1}s"><div class="n">${esc(c.n)}</div><div class="t">${esc(c.t)}</div>${c.items?`<ul>${c.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:`<div class="d">${esc(c.d)}</div>`}</div>`).join('')}</div></div>`,
+    steps:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><div class="steps">${(s.steps||[]).map((st,i)=>`<div class="step a" style="animation-delay:${.25+i*.12}s"><div class="num">0${i+1}</div>${stepDots()}<div class="t">${esc(st.t)}</div><div class="d">${esc(st.d)}</div></div>`).join('')}</div></div>`,
+    vs:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><div class="vs"><div class="box l a" style="animation-delay:.25s"><div class="k">${esc(s.left.k||'')}</div><div><div class="big">${esc(s.left.big)}</div><div class="lab">${esc(s.left.lab)}</div></div></div><div class="box r a" style="animation-delay:.4s">${bokeh}<div class="k" style="position:relative">${esc(s.right.k||'')}</div><div style="position:relative"><div class="big">${esc(s.right.big)}</div><div class="lab">${esc(s.right.lab)}</div></div></div></div></div>`,
+    figure:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><div class="figure a">${s.src?`<img src="${esc(s.src)}" alt="">`:`<div class="ph">圖片放這裡 · 叫 Claude「第 N 頁放這張圖」</div>`}</div>${s.caption?`<div class="cta-note a" style="margin-top:18px">${esc(s.caption)}</div>`:''}</div>`,
+    cta:s=>`${bokeh}${dots(19,17)}<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><p class="lead a">${esc(s.lead)}</p><div class="a"><a class="cta-btn" href="${esc(s.url||'#')}">${esc(s.button)}</a></div><div class="cta-note a">${esc(s.note)}</div></div>`
+  };
+  /* ═══ 生命靈數擴充：圖示與新頁型 ═══ */
+  const EL={火:'#E0573E',水:'#3A6FB0',木:'#3F9A6B',土:'#B98A4A',金:'#C9A227'};
+  const CL={橙:'#F08A3C',靛:'#3D3B8E',紅:'#D94A3A',橘:'#F08A3C',黃:'#E9C14A',綠:'#3E9B6A',青:'#3BA7A0',藍:'#2F6FB5',深藍:'#1F3A66',黑:'#1F2228',咖啡:'#8A6240',米:'#E8DCC4',白:'#FFFFFF',金:'#D4AF37',銀:'#C0C6CE',粉:'#F2A1B5',紫:'#8E6CC8'};
+  const IC={
+    火:'<path d="M24 6c2 7 10 11 10 21a10 10 0 0 1-20 0c0-5 3-8 5-10 0 4 2 6 4 6-1-6 1-12 1-17z"/>',
+    水:'<path d="M24 6c6 9 12 15 12 23a12 12 0 0 1-24 0c0-8 6-14 12-23z"/><path d="M18 31a6 6 0 0 0 6 6"/>',
+    木:'<path d="M24 42V20"/><path d="M24 26c-8 0-12-6-12-14 8 0 12 6 12 14z"/><path d="M24 22c6 0 10-5 10-12-6 0-10 5-10 12z"/>',
+    土:'<path d="M4 38l14-20 8 11 6-7 12 16z"/><path d="M4 42h40"/>',
+    金:'<circle cx="24" cy="24" r="17"/><rect x="19" y="19" width="10" height="10"/>',
+    wallet:'<rect x="6" y="14" width="36" height="24" rx="4"/><path d="M6 20h36"/><path d="M32 29h10"/><path d="M12 14l18-6 3 6"/>',
+    shirt:'<path d="M17 8l-11 7 5 7 4-2v20h18V20l4 2 5-7-11-7c-1 4-4 6-7 6s-6-2-7-6z"/>',
+    gem:'<path d="M14 8h20l8 10-18 22L6 18z"/><path d="M6 18h36"/><path d="M19 8l5 32 5-32"/>',
+    leafy:'<path d="M10 40c0-18 10-28 28-30 0 18-10 30-28 30z"/><path d="M10 40l18-20"/>',
+    home:'<path d="M6 22L24 7l18 15"/><path d="M11 19v21h26V19"/><path d="M20 40V29h8v11"/>',
+    sun:'<circle cx="24" cy="24" r="8"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M10 38l4-4M34 14l4-4"/>',
+    up:'<path d="M8 36l12-12 8 8 14-16"/><path d="M32 16h10v10"/>',
+    warn:'<path d="M24 6l20 34H4z"/><path d="M24 19v10"/><path d="M24 34v1"/>',
+    check:'<circle cx="24" cy="24" r="18"/><path d="M15 24l6 6 12-12"/>',
+    cal:'<rect x="6" y="10" width="36" height="32" rx="3"/><path d="M6 19h36M16 5v9M32 5v9"/>',
+    pen:'<path d="M8 40l4-12 22-22 8 8-22 22z"/><path d="M28 12l8 8"/>',
+    phone:'<rect x="14" y="4" width="20" height="40" rx="4"/><path d="M22 38h4"/>',
+    coins:'<ellipse cx="24" cy="12" rx="14" ry="5"/><path d="M10 12v8c0 3 6 5 14 5s14-2 14-5v-8"/><path d="M10 20v8c0 3 6 5 14 5s14-2 14-5v-8"/><path d="M10 28v8c0 3 6 5 14 5s14-2 14-5v-8"/>',
+    heart:'<path d="M24 41S6 30 6 17a9 9 0 0 1 18-3 9 9 0 0 1 18 3c0 13-18 24-18 24z"/>',
+    cycle:'<path d="M38 18A16 16 0 0 0 9 20"/><path d="M10 30a16 16 0 0 0 29-2"/><path d="M38 8v10H28"/><path d="M10 40V30h10"/>'
+  };
+  const ico=k=>`<svg class="ico" viewBox="0 0 48 48">${IC[k]||''}</svg>`;
+  /* 1 到 9 的神聖幾何：1 圓心、2 雙圓、3 三角、4 方、5 到 9 星形 */
+  const geo=(n,cls='')=>{const c=200,r=170;const pt=i=>{const a=-Math.PI/2+i*2*Math.PI/n;return [c+r*Math.cos(a),c+r*Math.sin(a)]};let p='';
+    if(n==1)p=`<circle class="gl" cx="${c}" cy="${c}" r="90"/><circle cx="${c}" cy="${c}" r="8" style="fill:currentColor"/>`;
+    else if(n==2)p=`<circle class="gl" cx="${c-55}" cy="${c}" r="110"/><circle class="gl" cx="${c+55}" cy="${c}" r="110"/>`;
+    else{const step={3:1,4:1,5:2,6:2,7:3,8:3,9:4}[n];if(n==6){const a=[0,2,4].map(pt),b=[1,3,5].map(pt);p=`<polygon class="gl" points="${a.join(' ')}"/><polygon class="gl" points="${b.join(' ')}"/>`}else{let seq=[],i=0;do{seq.push(pt(i));i=(i+step)%n}while(i!==0);p=`<polygon class="gl" points="${seq.join(' ')}"/>`}
+      for(let i=0;i<n;i++){const [x,y]=pt(i);p+=`<circle cx="${x}" cy="${y}" r="5" style="fill:currentColor"/>`}}
+    return `<div class="geo ${cls}"><svg viewBox="0 0 400 400"><g class="spin"><circle cx="${c}" cy="${c}" r="${r+14}" opacity=".5"/>${p}</g></svg></div>`};
+  const LIGHT={黃:1,白:1,米:1,金:1,粉:1};const DC=k=>k==='白'?'#BDB6AC':(CL[k]||EL[k]);
+  const chip=e=>CL[e]?`<span class="chip" style="background:${CL[e]};color:${LIGHT[e]?'#1D1D1F':'#fff'};border:1px solid var(--line)">代表色 · ${e}</span>`:`<span class="chip" style="background:${EL[e]}">${ico(e)}${e}</span>`;
+  const sws=a=>(a||[]).map(k=>`<span class="sw" style="background:${CL[k]||k}${k==='白'?';border-color:#BDB6AC':''}"></span>`).join('');
+  const cell=v=>{if(v&&typeof v==='object'){if(v.el)return `<span class="elc" style="color:${EL[v.el]}">${ico(v.el)}${v.el}</span>`;if(v.sw)return sws(v.sw)+esc(v.t||'')}return esc(v)};
+  const deco=s=>s.geo?`<div class="geo-deco">${geo(s.geo)}</div>`:'';
+
+  const _stat=R.stat,_quote=R.quote,_cover=R.cover,_cta=R.cta;
+  Object.assign(R,{
+    stat:s=>deco(s)+_stat(s),
+    quote:s=>deco(s)+_quote(s),
+    cover:s=>`<div class="geo-deco" style="opacity:.14">${geo(9)}</div>`+_cover(s),
+    cta:s=>`<div class="geo-deco" style="opacity:.12">${geo(1)}</div>`+_cta(s),
+    year:s=>`<div class="label a" style="position:relative;z-index:1;margin-top:60px;margin-bottom:0">${esc(s.label)}</div><div class="yr"><div class="yr-l a">${geo(s.n)}<div class="yr-num">${s.n}</div><div class="yr-name">${esc(s.name)}</div>${chip(s.el)}<div class="yr-kw">${s.kw.map(k=>`<span>${esc(k)}</span>`).join('')}</div></div><div class="yr-r">${[['up','機會',s.chance],['warn','要小心',s.care],['check','適合做',s.todo]].map((r,i)=>`<div class="yr-row a" style="animation-delay:${.25+i*.12}s"><div class="k">${ico(r[0])}${r[1]}</div><ul>${r[2].map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}<div class="yr-line a" style="animation-delay:.7s">${esc(s.line)}</div></div></div>`,
+    luck:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a" style="font-size:68px">${T(s.title)}</h2><div class="lk-top" style="grid-template-columns:repeat(${s.under?3:2},1fr)">${[['sun',s.under?'代表色':'代表色 · 能量不足時補強',s.main],['cycle','能量太旺時 · 調和',s.over]].concat(s.under?[['up','能量不足時 · 補強',s.under]]:[]).map((c,i)=>`<div class="lk-card a" style="animation-delay:${.2+i*.1}s"><div class="k">${ico(c[0])}${c[1]}</div><div class="lk-sw">${c[2].c.map(k=>`<i style="background:${CL[k]||k}${k==='白'?';border-color:#BDB6AC':''}"></i>`).join('')}</div><div class="nm">${esc(c[2].name)}</div><div class="why">${esc(c[2].why||'')}</div></div>`).join('')}</div><div class="lk-bot">${[['shirt','穿搭',s.wear],['gem','飾品',s.acc],['sun','生活',s.life],['home','居家',s.home]].map((c,i)=>`<div class="lk-it a" style="animation-delay:${.5+i*.08}s"><div class="k">${ico(c[0])}${c[1]}</div><div class="d">${esc(c[2])}</div></div>`).join('')}</div></div>`,
+    table:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a" style="font-size:64px">${T(s.title)}</h2><table class="tbl a ${s.dense?'dense':''}"><tr>${s.head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr>${s.rows.map(r=>`<tr>${r.map(v=>`<td>${cell(v)}</td>`).join('')}</tr>`).join('')}</table>${s.note?`<div class="cta-note a" style="margin-top:20px">${esc(s.note)}</div>`:''}</div>`,
+    cols:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><div class="cols" style="grid-template-columns:repeat(${(s.cols||[]).length},1fr)">${(s.cols||[]).map((c,i)=>`<div class="col a" style="animation-delay:${.25+i*.1}s;min-height:360px">${c.icon?`<div class="ci">${ico(c.icon)}</div>`:''}<div class="n">${esc(c.n)}</div><div class="t">${esc(c.t)}</div>${c.items?`<ul>${c.items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:`<div class="d">${esc(c.d)}</div>`}</div>`).join('')}</div></div>`,
+    steps:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><div class="steps" style="grid-template-columns:repeat(${(s.steps||[]).length},1fr)">${(s.steps||[]).map((st,i)=>`<div class="step a" style="animation-delay:${.25+i*.12}s"><div class="num">0${i+1}</div>${st.icon?`<div class="si">${ico(st.icon)}</div>`:''}<div class="t">${esc(st.t)}</div><div class="d">${esc(st.d)}</div></div>`).join('')}</div></div>`,
+    wuxing:s=>{const names=['木','火','土','金','水'],cx=380,cy=310,r=230;const P=names.map((n,i)=>{const a=-Math.PI/2+i*2*Math.PI/5;return [cx+r*Math.cos(a),cy+r*Math.sin(a)]});let o='';
+      for(let i=0;i<5;i++){const [x1,y1]=P[i],[x2,y2]=P[(i+1)%5];const k=58/Math.hypot(x2-x1,y2-y1);o+=`<line class="lk" x1="${x1+(x2-x1)*k}" y1="${y1+(y2-y1)*k}" x2="${x2-(x2-x1)*k}" y2="${y2-(y2-y1)*k}" stroke="currentColor" stroke-width="2" marker-end="url(#ar)" style="animation-delay:${.6+i*.25}s"/>`}
+      for(let i=0;i<5;i++){const [x1,y1]=P[i],[x2,y2]=P[(i+2)%5];const k=62/Math.hypot(x2-x1,y2-y1);o+=`<line x1="${x1+(x2-x1)*k}" y1="${y1+(y2-y1)*k}" x2="${x2-(x2-x1)*k}" y2="${y2-(y2-y1)*k}" stroke="currentColor" stroke-width="1.4" stroke-dasharray="6 7" opacity=".55" marker-end="url(#ar)"/>`}
+      names.forEach((n,i)=>{const [x,y]=P[i];o+=`<g class="node" style="animation-delay:${.2+i*.12}s"><circle cx="${x}" cy="${y}" r="52" fill="${EL[n]}"/><g transform="translate(${x-20} ${y-30}) scale(.84)" style="color:#fff">${IC[n].replace(/<(path|circle|rect)/g,'<$1 fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"')}</g><text x="${x}" y="${y+40}" text-anchor="middle" font-size="22" font-weight="700" fill="#fff" style="fill:#fff">${n}</text></g>`});
+      return `<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a" style="font-size:68px">${T(s.title)}</h2><div class="wx"><svg viewBox="0 0 760 620"><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>${o}</svg><div class="legend a" style="animation-delay:.8s">${s.legend.map(l=>`<div><i class="${l.dash?'dash':''}"></i><b>${esc(l.k)}</b><span>${esc(l.d)}</span></div>`).join('')}</div></div></div>`},
+    bday:s=>`<div class="center"><div class="label a">${esc(s.label)}</div><h2 class="h2 a">${T(s.title)}</h2><div class="bd"><div><div class="bd-track">${s.steps.map((st,i)=>`<div class="bd-st a ${i===s.steps.length-1?'hit':''}" style="animation-delay:${.3+i*.6}s"><div class="t">${esc(st[0])}</div><div class="d">${esc(st[1])}</div></div>`).join('')}</div><div class="bd-note a" style="animation-delay:2.6s">${esc(s.note||'')}</div></div><div class="bd-year a" style="animation-delay:.2s"><span class="y0">${esc(s.from)}</span><span class="y1">${esc(s.to)}</span></div></div></div>`,
+    cycle:s=>{const cx=330,cy=300,r=230;const P=[...Array(9)].map((_,i)=>{const a=-Math.PI/2+i*2*Math.PI/9;return [cx+r*Math.cos(a),cy+r*Math.sin(a)]});let o=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 8" opacity=".5"/>`;let seq=[],i=0;do{seq.push(P[i]);i=(i+4)%9}while(i!==0);o+=`<polygon class="lk" points="${seq.join(' ')}" fill="none" stroke="currentColor" stroke-width="1" opacity=".3" style="stroke-dasharray:4000;stroke-dashoffset:4000;animation-duration:3s"/>`;
+      s.items.forEach((it,i)=>{const [x,y]=P[i];o+=`<g class="node" style="animation-delay:${.2+i*.14}s"><circle cx="${x}" cy="${y}" r="44" fill="var(--card)" stroke="${DC(it[2])}" stroke-width="4"/><text x="${x}" y="${y+16}" text-anchor="middle" font-size="44" style="font-family:var(--display)">${i+1}</text></g>`});
+      return `<div class="center"><div class="label a">${esc(s.label)}</div><div style="display:grid;grid-template-columns:680px 1fr;gap:70px;align-items:center"><div class="diagram" style="height:620px;margin:0"><svg viewBox="0 0 660 600">${o}</svg></div><div><h2 class="h2 a" style="font-size:68px">${T(s.title)}</h2><div class="a" style="margin-top:34px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px 26px">${s.items.map((it,i)=>`<div style="display:flex;gap:12px;align-items:baseline;font-size:24px"><b style="font-family:var(--display);font-size:34px;color:${DC(it[2])}">${i+1}</b><span style="font-family:var(--tc);font-weight:700">${esc(it[0])}</span><span style="color:var(--mute);font-size:19px">${esc(it[1])}</span></div>`).join('')}</div></div></div></div>`}
+  });
+
+  const stage=document.getElementById('stage'),S=DECK.slides;
+  let skin=new URLSearchParams(location.search).get('skin')||DECK.skin||'greige';document.body.className='skin-'+skin;
+  stage.innerHTML=S.map((s,i)=>{const dark=s.dark??['cover','quote','cta'].includes(s.type);return `<section class="slide ${dark?'dark':''} ${(!dark&&i%2)?'alt':''}" data-i="${i}"><div class="head"><span class="brand">${esc(DECK.brand)}</span><span>${String(i+1).padStart(2,'0')} — ${String(S.length).padStart(2,'0')}</span></div>${(R[s.type]||R.points)(s)}<div class="foot"><span>${esc(s.label||'')}</span><span></span></div></section>`}).join('')+`<div id="bar"></div><div id="cnt"></div>`;
+  const slides=[...stage.querySelectorAll('.slide')],bar=document.getElementById('bar'),cnt=document.getElementById('cnt'),notes=document.getElementById('notes'),nb=document.getElementById('notes-body'),nn=document.getElementById('notes-next'),grid=document.getElementById('grid'),gb=document.getElementById('grid-body'),hint=document.getElementById('hint');
+  let c=0;
+  function fit(){const k=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`translate(-50%,-50%) scale(${k})`}
+  addEventListener('resize',fit);fit();
+  function countUp(el){const raw=el.dataset.count||'';const m=raw.match(/^([^\d]*)([\d,\.]+)(.*)$/);if(!m)return;const target=parseFloat(m[2].replace(/,/g,''));if(isNaN(target))return;const dec=(m[2].split('.')[1]||'').length;const t0=performance.now(),dur=1100;const step=t=>{const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);const v=(target*e).toFixed(dec);el.textContent=m[1]+(dec?v:Number(v).toLocaleString())+m[3];if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+  function restart(el){el.querySelectorAll('.a,.dither,.diagram .node,.diagram .lk,.diagram .lbl,.diagram .bar').forEach(x=>{x.style.animation='none';x.offsetHeight;x.style.animation=''});el.querySelectorAll('.w').forEach(x=>{x.style.transition='none';x.style.opacity='.18';x.offsetHeight;x.style.transition='';x.style.opacity=''})}
+  function show(i){if(i<0||i>=slides.length)return;slides[c].classList.remove('on');c=i;slides[c].classList.add('on');restart(slides[c]);const st=slides[c].querySelector('.stat');if(st)countUp(st);bar.style.width=((c+1)/slides.length*100)+'%';bar.style.background=slides[c].classList.contains('dark')?'var(--onDark)':'var(--ink)';cnt.textContent='';nb.innerHTML=esc(S[c].notes||'（這頁沒有講者備註）');nn.textContent=S[c+1]?'下一頁：'+String(S[c+1].title||S[c+1].quote||S[c+1].number||'').replace(/<[^>]+>/g,''):'最後一頁';try{history.replaceState(null,'','#'+(c+1))}catch(e){}}
+  const start=Math.max(0,Math.min(slides.length-1,(parseInt(location.hash.slice(1))||1)-1));slides[start].classList.add('on');c=start;show(start);
+  addEventListener('keydown',e=>{if(grid.classList.contains('open')&&e.key==='Escape'){grid.classList.remove('open');return}
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();show(c+1)}else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();show(c-1)}
+    else if(e.key==='Home')show(0);else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+    else if(e.key==='n'||e.key==='N')notes.classList.toggle('open');else if(e.key==='g'||e.key==='G')toggleGrid();
+    else if(e.key==='s'||e.key==='S'){const all=['greige','midnight','aurora','pastel','bloom','sky'];skin=all[(all.indexOf(skin)+1)%all.length];document.body.className='skin-'+skin;restart(slides[c]);hint.textContent='皮膚：'+skin;hint.classList.remove('hide');clearTimeout(hint._t);hint._t=setTimeout(()=>hint.classList.add('hide'),1800);return}
+    hint.classList.add('hide')});
+  stage.addEventListener('click',e=>{if(e.target.closest('a'))return;const r=stage.getBoundingClientRect();(e.clientX-r.left)/r.width>.5?show(c+1):show(c-1);hint.classList.add('hide')});
+  let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)d<0?show(c+1):show(c-1)});
+  setTimeout(()=>hint.classList.add('hide'),7000);
+  function toggleGrid(){if(grid.classList.contains('open')){grid.classList.remove('open');return}gb.innerHTML=slides.map((s,i)=>`<div class="cell ${i===c?'cur':''}" data-i="${i}" tabindex="0"><div class="mini">${s.outerHTML.replace(/class="slide/,'class="slide on')}</div><div class="num">${i+1}</div></div>`).join('');gb.querySelectorAll('.cell').forEach(el=>{const go=()=>{show(+el.dataset.i);grid.classList.remove('open')};el.onclick=go;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});grid.classList.add('open')}
+  addEventListener('beforeprint',()=>slides.forEach(s=>s.classList.add('on')));addEventListener('afterprint',()=>slides.forEach((s,i)=>{if(i!==c)s.classList.remove('on')}));
+})();
+</script>
+</body>
+</html>
